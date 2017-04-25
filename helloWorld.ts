@@ -1,8 +1,10 @@
-function SayHello() {
-    let pageTitle = document.createElement("h1");
-    pageTitle.textContent = "Hello Code2be !";
+///<reference types="jquery"/>
 
-    document.body.appendChild(pageTitle);
+function SayHello() {
+    let pageTitle = $("<h1></h1>");
+    pageTitle.text("Hello Code2be !");
+
+    $("body").append(pageTitle);
 }
 
 SayHello();
