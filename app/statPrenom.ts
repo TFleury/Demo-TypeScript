@@ -1,11 +1,6 @@
 export interface IStatPrenom {
-    sexe: Sexe;
+    sexe: "FILLE" | "GARCON";
     prenom: string;
     occurrence: number;
     annee_naissance: number;
-}
-
-export enum Sexe {
-    FILLE,
-    GARCON
 }

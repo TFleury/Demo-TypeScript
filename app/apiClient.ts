@@ -1,5 +1,5 @@
 import * as $ from "jquery";
-import { IStatPrenom, Sexe } from "./statPrenom";
+import { IStatPrenom } from "./statPrenom";
 
 export interface ApiResult<TData> {
     version: string;
@@ -8,7 +8,7 @@ export interface ApiResult<TData> {
 }
 
 export interface IApiFilter {
-    sexe?: Sexe;
+    sexe?: "FILLE" | "GARCON";
     prenom?: string;
     annee?: number;
 }
@@ -18,18 +18,10 @@ export class ApiClient {
 
     public list(filter?: IApiFilter): JQueryPromise<ApiResult<IStatPrenom>> {
         if(filter) {
-            return $.getJSON(this.baseUrl + "/content.json").pipe(ApiClient.bindSexe).pipe(results => ApiClient.filter(results, filter));
+            return $.getJSON(this.baseUrl + "/content.json").pipe(results => ApiClient.filter(results, filter));
         } else {
-            return $.getJSON(this.baseUrl + "/content.json").pipe(ApiClient.bindSexe);
+            return $.getJSON(this.baseUrl + "/content.json");
         }
-    }
-
-    private static bindSexe(source: ApiResult<any>): ApiResult<IStatPrenom> {
-        source.data = source.data.map(stat => {
-            stat.sexe = Sexe[<string>stat.sexe];
-            return stat;
-        });
-        return source;
     }
 
     private static filter(source: ApiResult<IStatPrenom>, filter: IApiFilter): ApiResult<IStatPrenom> {

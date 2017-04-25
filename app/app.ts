@@ -1,5 +1,5 @@
 import { ApiClient, ApiResult, IApiFilter } from "./apiClient"
-import { IStatPrenom, Sexe } from "./statPrenom";
+import { IStatPrenom } from "./statPrenom";
 
 class MyApp {
     private apiClient = new ApiClient("data");
@@ -18,7 +18,7 @@ class MyApp {
 
         results.data.forEach((result) => {
             let row = $("<tr></tr>");
-            row.append(`<td>${result.sexe === Sexe.FILLE ? "Fille" : "Garçon"}</td>`);
+            row.append(`<td>${result.sexe === "FILLE" ? "Fille" : "Garçon"}</td>`);
             row.append(`<td>${result.prenom}</td>`);
             row.append(`<td>${result.occurrence}</td>`);
             row.append(`<td>${result.annee_naissance}</td>`);
@@ -30,7 +30,7 @@ class MyApp {
         let filter: IApiFilter = {};
         let sexe: string = $("#filterSexe").val();
         if(sexe) {
-            filter.sexe = Sexe[sexe];
+            filter.sexe = sexe === "FILLE" ? "FILLE" : "GARCON";
         }
 
         filter.prenom = $("#filterPrenom").val();

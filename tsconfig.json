@@ -2,7 +2,8 @@
     "compilerOptions": {
         "target": "ES5",
         "moduleResolution": "node",
-        "sourceMap": true
+        "sourceMap": true,
+        "noImplicitAny": true
     },
     "include": [
         "app/*.ts"
