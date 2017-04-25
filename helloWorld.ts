@@ -1,4 +1,4 @@
-///<reference types="jquery"/>
+import * as $ from "jquery";
 
 function SayHello() {
     let pageTitle = $("<h1></h1>");
